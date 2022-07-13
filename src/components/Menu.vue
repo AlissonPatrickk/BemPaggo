@@ -55,11 +55,9 @@ export default {
         react: this.react,
         vue: this.vue,
         angular: this.angular,
-        number: {
-          num: this.number
-        }
       }
-      this.$store.dispatch('valuesItem', formValue)
+      let  number = this.number
+      this.$store.dispatch('valuesItem', formValue, number)
     },
     decrease(){
       this.number--
@@ -74,7 +72,7 @@ export default {
 <style >
 .main-container{
   background-color: rgb(169, 111, 223);
-  height: 96vh;
+  height: auto;
 }
 .form-container{
   background-color: rgb(196, 211, 226);

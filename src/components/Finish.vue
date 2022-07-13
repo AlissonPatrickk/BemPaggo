@@ -20,12 +20,32 @@
       </div>
 
       <div class="col-6">
-
-        <q-input class="col-4" v-model="name" filled type="text" hint="Nome Completo" />
-        <q-input class="col-4" v-model="tel" filled type="tel" hint="Telephone number" />
-        <q-input class="col-4" v-model="email" filled type="email" hint="Email" />
-        <q-input class="col-4" v-model="date" filled type="date" hint="Nascimento" />
-        <q-select outlined class="col-8" v-model="model" :options="options" label="Forma de Pagamento" />
+        <q-input   class="col-4" v-model="name" filled type="text" label="Nome Completo" />
+        <q-input   class="col-4" v-model="tel" filled type="tel" label="Telephone number" />
+        <q-input   class="col-4" v-model="email" filled type="email" label="Email" />
+        <div>
+        <select class="select-pay" v-model="selected">
+          <option v-for="item in inventory" :value="item" :key="item.id">
+            {{item.name}}
+          </option>
+        </select>
+        <div class="row justify-between" v-if="selected.id === 1">
+          <q-input class="col-12" placeholder="Numero do Cartão de Debito" mask="####-####-####-####" />
+          <q-input class="col-5"  placeholder="CVV" mask="###" />
+          <q-input class="col-5" placeholder="Vencimento" mask="##/##" />
+        </div>
+        <div class="row justify-between" v-if="selected.id === 2">
+          <q-input class="col-12" placeholder="Numero do Cartão de Credito" mask="####-####-####-####" />
+          <q-input class="col-5"  placeholder="CVV" mask="###" />
+          <q-input class="col-5" placeholder="Vencimento" mask="##/##"/>
+        </div>
+        <div v-if="selected.id === 3">
+          <span>Boleto</span>
+        </div>
+        <div v-if="selected.id === 4">
+          <span>Pix</span>
+        </div>
+        </div>
         <q-btn class="col-4 button-forms" label="Finalizar" />
       </div>
 
@@ -42,11 +62,19 @@ export default {
       name: "",
       email: "",
       tel: "",
-      date: "",
-      model: "",
-      options: ["Cartão de Credito", "Cartão de Debito", "Pix"],
+      inventory:[
+        {name: 'Cartão de Debito', id:1},
+        {name: 'Cartão de Credito', id:2},
+        {name: 'Pix', id:3},
+        {name: 'Boleto', id:4}
+
+      ],
+      selected: 2
     };
   },
+  created(){
+    this.selected = this.inventory.find(i => i.id === this.selected)
+  }
 };
 </script>
 <style>
@@ -56,5 +84,9 @@ export default {
   border-radius: 20px;
   height: 70%;
   gap: 50px;
+}
+.select-pay{
+  width: 100%;
+  padding: 15px;
 }
 </style>
