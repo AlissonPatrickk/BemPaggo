@@ -1,33 +1,37 @@
 <template>
-  <div class="flex flex-center">
-    <q-form @submit="saveItems">
+  <div class="flex flex-center main-container" >
+    <q-form @submit="saveItems" class="form-container">
       <div>
         <h4>
           Quais adesivos:
         </h4>
-        <q-checkbox v-model="react" label="React" />
-        <q-checkbox v-model="vue" label="Vue" />
-        <q-checkbox v-model="angular" label="Angular" />
+        <div>
+          <q-checkbox v-model="react" label="React" />
+          <q-checkbox v-model="vue" label="Vue" />
+          <q-checkbox v-model="angular" label="Angular" />
+        </div>
       </div>
       <div>
-        <h4>
+        <h5>
           Quantos adesivos de cada?
-        </h4>
+        </h5>
         <div class="flex flex-center justify-around">
-          <q-btn color="primary" @click="decrease">-</q-btn>
-          <span> {{ number }}</span>
-          <q-btn color="primary" @click="increase">+</q-btn>
+          <q-btn class="button-forms" @click="decrease">-</q-btn>
+          <span class="input-number"> {{ number }}</span>
+          <q-btn class="button-forms" @click="increase">+</q-btn>
         </div>
       </div>
       <div>
         <h5>
           Observações
         </h5>
-        <q-input filled type="textarea" />
+        <q-input class="text-area" filled v-model="textarea" type="textarea" placeholder="Alguma dúvida? Recado?"  />
 
       </div>
       <div>
-          <q-btn label="Enviar" type="submit" color="primary" value="save" />      
+        <router-link to="finish">
+          <q-btn label="Enviar" type="submit" class="button-forms" value="save" />      
+        </router-link>
       </div>
     </q-form>
   </div>
@@ -42,7 +46,9 @@ export default {
         react: false,
         vue: false,
         angular: false,
-        number: 0
+        number: 0,
+        textarea: ''
+
     }
   },
   methods: {
@@ -65,3 +71,34 @@ export default {
   
 }
 </script>
+<style >
+.main-container{
+  background-color: rgb(169, 111, 223);
+  height: 96vh;
+}
+.form-container{
+  background-color: rgb(196, 211, 226);
+  padding: 50px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 35px;
+}
+.text-area{
+  width: 450px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+.input-number{
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+}
+.button-forms{
+  padding: 15px 30px !important;
+  background-color: rgb(53, 53, 163) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}
+</style>

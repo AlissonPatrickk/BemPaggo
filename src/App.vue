@@ -1,7 +1,7 @@
 <template>
   <q-layout >
     <q-header >
-      <q-toolbar class="bg-black">
+      <q-toolbar class="bg-black" style="padding:20px">
         <q-toolbar-title>
           Bem Paggo
         </q-toolbar-title>
