@@ -26,7 +26,7 @@
         <q-input class="col-4" v-model="email" filled type="email" hint="Email" />
         <q-input class="col-4" v-model="date" filled type="date" hint="Nascimento" />
         <q-select outlined class="col-8" v-model="model" :options="options" label="Forma de Pagamento" />
-        <q-btn class="col-4 button-forms" style="margin-top:15px" label="Finalizar" />
+        <q-btn class="col-4 button-forms" label="Finalizar" />
       </div>
 
     </div>
@@ -47,9 +47,6 @@ export default {
       options: ["Cartão de Credito", "Cartão de Debito", "Pix"],
     };
   },
-  created() {
-    console.log('aaaa', this.$store.state);
-  }
 };
 </script>
 <style>

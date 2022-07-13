@@ -6,23 +6,22 @@ export default createStore({
       react: false,
       vue: false,
       angular: false,
+      number: {
+        num: 0
+      }
     },
-    number: 0
   },
   getters: {
-
   },
   mutations: {
     valuesItem(state, payload) {
       state.formValue = payload
-      console.log(state, payload)
     }
   },
   actions: {
     valuesItem(context, payload) {
       context.commit('valuesItem', payload)
     },
-
   },
   modules: {
   }

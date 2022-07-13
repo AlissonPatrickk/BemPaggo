@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-center main-container" >
-    <q-form @submit="saveItems" class="form-container">
+    <q-form id="teste" class="form-container">
       <div>
         <h4>
           Quais adesivos:
@@ -29,52 +29,9 @@
 
       </div>
       <div>
-          <q-btn label="Enviar" type="submit"  @click="medium = true" class="button-forms" value="save" />      
+          <q-btn label="Enviar" form="teste" @click="saveItems" class="button-forms" to="/finish" />      
       </div>
     </q-form>
-
-        <q-dialog
-      v-model="medium"
-    >
-      <q-card style="width: 700px; max-width: 80vw;">
-         <div class="q-pa-md text-center main-container">
-    <h4>Finalizar Pagamento</h4>
-    <div class="q-gutter-md row justify-between form-pay">
-      <div class="col-5">
-        <div class="col-8">
-          <div class="q-pa-md ">
-            <q-list bordered separator>
-              <q-item clickable v-ripple v-for="(index, name) in $store.state.formValue" :key="index">
-                <q-item-section>
-                  <q-item-label overline>SELOS: {{ name }}</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </div>
-          <div>
-            {{ $store.state }}
-          </div>
-        </div>
-      </div>
-
-      <div class="col-6">
-
-        <q-input class="col-4" v-model="name" filled type="text" hint="Nome Completo" />
-        <q-input class="col-4" v-model="tel" filled type="tel" hint="Telephone number" />
-        <q-input class="col-4" v-model="email" filled type="email" hint="Email" />
-        <q-input class="col-4" v-model="date" filled type="date" hint="Nascimento" />
-        <q-select outlined class="col-8" v-model="model" :options="options" label="Forma de Pagamento" />
-        <q-btn class="col-4 button-forms" style="margin-top:15px" label="Finalizar" />
-      </div>
-
-    </div>
-  </div>
-
-        <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="OK" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
   </div>
 </template>
 
@@ -84,7 +41,6 @@ export default {
   name: "Menu",
   data(){
     return {   
-        medium: false,
         react: false,
         vue: false,
         angular: false,
@@ -99,9 +55,11 @@ export default {
         react: this.react,
         vue: this.vue,
         angular: this.angular,
-        number: this.number
+        number: {
+          num: this.number
+        }
       }
-      this.$store.commit('valuesItem', formValue)
+      this.$store.dispatch('valuesItem', formValue)
     },
     decrease(){
       this.number--
