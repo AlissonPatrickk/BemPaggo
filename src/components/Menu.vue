@@ -1,10 +1,8 @@
 <template>
-  <div class="flex flex-center main-container" >
+  <div class="flex flex-center main-container">
     <q-form id="teste" class="form-container">
       <div>
-        <h4>
-          Quais adesivos:
-        </h4>
+        <h4>Quais adesivos:</h4>
         <div>
           <q-checkbox v-model="react" label="React" />
           <q-checkbox v-model="vue" label="Vue" />
@@ -12,9 +10,7 @@
         </div>
       </div>
       <div>
-        <h5>
-          Quantos adesivos de cada?
-        </h5>
+        <h5>Quantos adesivos de cada?</h5>
         <div class="flex flex-center justify-around">
           <q-btn class="button-forms" @click="decrease">-</q-btn>
           <span class="input-number"> {{ number }}</span>
@@ -22,32 +18,39 @@
         </div>
       </div>
       <div>
-        <h5>
-          Observações
-        </h5>
-        <q-input class="text-area" filled v-model="textarea" type="textarea" placeholder="Alguma dúvida? Recado?"  />
-
+        <h5>Observações</h5>
+        <q-input
+          class="text-area"
+          filled
+          v-model="textarea"
+          type="textarea"
+          placeholder="Alguma dúvida? Recado?"
+        />
       </div>
       <div>
-          <q-btn label="Enviar" form="teste" @click="saveItems" class="button-forms" to="/finish" />      
+        <q-btn
+          label="Enviar"
+          form="teste"
+          @click="saveItems"
+          class="button-forms"
+          to="/finish"
+        />
       </div>
     </q-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Menu",
-  data(){
-    return {   
-        react: false,
-        vue: false,
-        angular: false,
-        number: 0,
-        textarea: ''
-
-    }
+  data() {
+    return {
+      react: false,
+      vue: false,
+      angular: false,
+      number: 0,
+      textarea: "",
+    };
   },
   methods: {
     saveItems() {
@@ -55,26 +58,25 @@ export default {
         react: this.react,
         vue: this.vue,
         angular: this.angular,
-      }
-      let  number = this.number
-      this.$store.dispatch('valuesItem', formValue, number)
+      };
+      let number = this.number;
+      this.$store.dispatch("valuesItem", formValue, number);
     },
-    decrease(){
-      this.number--
+    decrease() {
+      this.number--;
     },
-    increase(){
-      this.number++
-    }
+    increase() {
+      this.number++;
+    },
   },
-  
-}
+};
 </script>
 <style >
-.main-container{
+.main-container {
   background-color: rgb(169, 111, 223);
   height: auto;
 }
-.form-container{
+.form-container {
   background-color: rgb(196, 211, 226);
   padding: 50px;
   border-radius: 20px;
@@ -83,17 +85,17 @@ export default {
   align-items: center;
   row-gap: 35px;
 }
-.text-area{
+.text-area {
   width: 450px;
   background-color: #fff;
   border-radius: 20px;
 }
-.input-number{
+.input-number {
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
 }
-.button-forms{
+.button-forms {
   padding: 15px 30px !important;
   background-color: rgb(53, 53, 163) !important;
   color: #fff !important;

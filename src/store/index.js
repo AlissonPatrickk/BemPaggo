@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    formValue:{
+    formValue: {
       react: false,
       vue: false,
       angular: false,
