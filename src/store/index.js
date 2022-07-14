@@ -6,8 +6,11 @@ export default createStore({
       react: false,
       vue: false,
       angular: false,
+      quantidade: {
+        number: 0 
+      }
     },
-    number: 0
+
   },
   getters: {
   },

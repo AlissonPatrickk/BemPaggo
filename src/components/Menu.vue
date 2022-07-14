@@ -13,28 +13,16 @@
         <h5>Quantos adesivos de cada?</h5>
         <div class="flex flex-center justify-around">
           <q-btn class="button-forms" @click="decrease">-</q-btn>
-          <span class="input-number"> {{ number }}</span>
+          <span class="input-quantidade"> {{ quantidade }}</span>
           <q-btn class="button-forms" @click="increase">+</q-btn>
         </div>
       </div>
       <div>
         <h5>Observações</h5>
-        <q-input
-          class="text-area"
-          filled
-          v-model="textarea"
-          type="textarea"
-          placeholder="Alguma dúvida? Recado?"
-        />
+        <q-input class="text-area" filled v-model="textarea" type="textarea" placeholder="Alguma dúvida? Recado?" />
       </div>
       <div>
-        <q-btn
-          label="Enviar"
-          form="teste"
-          @click="saveItems"
-          class="button-forms"
-          to="/finish"
-        />
+        <q-btn label="Enviar" form="teste" @click="saveItems" class="button-forms" to="/finish" />
       </div>
     </q-form>
   </div>
@@ -48,7 +36,7 @@ export default {
       react: false,
       vue: false,
       angular: false,
-      number: 0,
+      quantidade: 0,
       textarea: "",
     };
   },
@@ -58,46 +46,52 @@ export default {
         react: this.react,
         vue: this.vue,
         angular: this.angular,
+        quantidade: {
+          number: this.quantidade
+        }
       };
-      let number = this.number;
-      this.$store.dispatch("valuesItem", formValue, number);
+      this.$store.dispatch("valuesItem", formValue);
     },
     decrease() {
-      this.number--;
+      this.quantidade--;
     },
     increase() {
-      this.number++;
+      this.quantidade++;
     },
   },
 };
 </script>
 <style >
 .main-container {
-  background-color: rgb(169, 111, 223);
-  height: auto;
+  background-color: #D8BFD8;
+  height: 100vh;
 }
+
 .form-container {
-  background-color: rgb(196, 211, 226);
-  padding: 50px;
+  background-color: #E6E6FA;
+  padding: 15px 50px 40px 50px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 35px;
 }
+
 .text-area {
   width: 450px;
   background-color: #fff;
   border-radius: 20px;
 }
-.input-number {
+
+.input-quantidade {
   background-color: #fff;
   padding: 25px;
   border-radius: 10px;
 }
+
 .button-forms {
   padding: 15px 30px !important;
-  background-color: rgb(53, 53, 163) !important;
+  background-color: #9370DB !important;
   color: #fff !important;
   border-radius: 10px !important;
 }
